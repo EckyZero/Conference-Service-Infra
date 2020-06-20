@@ -1,0 +1,8 @@
+substitutions:
+    _APP_NAME: talk-service
+    _CONFIG_FILE: 'deployment.yaml'
+steps:
+# Deploy/Update related infrastructure
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: 'bash'
+    args: ['infrastructure/cloudbuild.sh', '$_APP_NAME', '$_CONFIG_FILE']

@@ -1,0 +1,10 @@
+imports:
+  - path: cloudsql.jinja
+resources:
+  - name: talk-db
+    type: cloudsql.jinja
+    properties:
+      database:
+        name: $_APP_NAME
+      failover: true
+      readReplicas: 1
