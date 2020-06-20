@@ -19,5 +19,4 @@ else
     
     # Run Deployment Manager
     gcloud deployment-manager deployments create ${APP_NAME} --config=${CONFIG_FILE}
-    
 fi

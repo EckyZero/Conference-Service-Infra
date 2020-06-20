@@ -5,4 +5,4 @@ steps:
 # Deploy/Update related infrastructure
   - name: gcr.io/cloud-builders/gcloud
     entrypoint: 'bash'
-    args: ['infrastructure/cloudbuild.sh', '$_APP_NAME', '$_CONFIG_FILE']
+    args: ['cloudbuild.sh', '$_APP_NAME', '$_CONFIG_FILE']
