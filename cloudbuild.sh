@@ -15,7 +15,7 @@ declare -a services=("sqladmin.googleapis.com"
                 )
 
 # Enable specified services
-for i in "${arr[@]}"
+for i in "${services[@]}"
 do
    echo "Enabling $i"
    gcloud services enable $i   
