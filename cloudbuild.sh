@@ -1,26 +1,38 @@
+#!/bin/bash
+
 APP_NAME=$1
 CONFIG_FILE=$2
 
-# Check if it already exists
+# Declare services needed for this service
+# Cloud SQL - enable web service to use the SQL backend
+# Deployment Manager - enable this deployment script to work
+# Secret Manager - enable app to access configurations
+# App Engine - enable application deployment to App Engine
+declare -a services=("sqladmin.googleapis.com" 
+                     "deploymentmanager.googleapis.com" 
+                     "secretmanager.googleapis.com" 
+                     "appengine.googleapis.com"
+                )
+
+# Enable specified services
+for i in "${arr[@]}"
+do
+   echo "Enabling $i"
+   gcloud services enable $i   
+done
+
+# Check if deployment already exists
 set +e
 O=`gcloud deployment-manager deployments describe ${APP_NAME} 2>&1`  
 exists=$?
 set -e
-
-# Enable Cloud SQL
-gcloud services enable sqladmin.googleapis.com
-
-# Enable deployment manager
-gcloud services enable deploymentmanager.googleapis.com
-
-# Enable deployment manager
-gcloud services enable secretmanager.googleapis.com
     
 
 if [ ${exists} -eq 0 ]; then
+    # If existing, update current deployment
     echo ${APP_NAME} exists
     gcloud deployment-manager deployments update ${APP_NAME} --config=${CONFIG_FILE}
 else
-    # Run Deployment Manager
+    # If first run, create new deployment
     gcloud deployment-manager deployments create ${APP_NAME} --config=${CONFIG_FILE}
 fi
