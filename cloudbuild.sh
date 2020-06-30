@@ -11,7 +11,8 @@ CONFIG_FILE=$2
 declare -a services=("sqladmin.googleapis.com" 
                      "deploymentmanager.googleapis.com" 
                      "secretmanager.googleapis.com" 
-                     "appengine.googleapis.com"
+                     "appengine.googleapis.com",
+                     "endpointsportal.googleapis.com"
                 )
 
 # Enable specified services
