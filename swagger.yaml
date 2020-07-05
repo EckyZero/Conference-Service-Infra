@@ -392,8 +392,7 @@ definitions:
         example: https://www.churchofjesuschrist.org/general-conference/topics/Jesus-Christ?lang=eng&encoded=true
       talksCount:
         type: number
-        format: int32
-        example: 809.0
+        example: 809
   Talk:
     type: object
     properties:
