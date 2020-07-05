@@ -37,3 +37,6 @@ else
     # If first run, create new deployment
     gcloud deployment-manager deployments create ${APP_NAME} --config=${CONFIG_FILE}
 fi
+
+# Update cloud endpoints API portal
+gcloud endpoints services deploy 'swagger.yaml'

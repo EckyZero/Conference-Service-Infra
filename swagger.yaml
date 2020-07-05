@@ -1,0 +1,478 @@
+---
+swagger: "2.0"
+info:
+  description: RESTful web service for querying general conference data for members of The Church of Jesus Christ of Latter-day Saints
+  version: 1.0
+  title: Conference Service
+  contact:
+    email: ebandersen87@gmial.com
+  license:
+    name: MIT
+    url: https://github.com/EckyZero/Talk-Service/blob/master/LICENSE
+host: api.conference.wardbook.com
+basePath: /1.0
+schemes:
+- https
+paths:
+  /topics:
+    get:
+      summary: Get General Conference Topics
+      description: |
+        Get all topics spoken to in General Conference. Use this to get the topics "tag" element to then query for talks related to that subject
+      operationId: getTopics
+      produces:
+      - application/json
+      parameters:
+      - name: source
+        in: query
+        description: |
+          Valid values are 'web' and 'cache'. 'web' integrates with the Church's API's directly so it is always the most up-to-date, but may take longer. 'cache' is faster, but may be a few days old
+        required: true
+        type: string
+        enum:
+        - web
+        - cache
+      responses:
+        "200":
+          description: topics matching the search criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Topic'
+        "400":
+          description: bad input parameter
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Error'
+  /talks:
+    get:
+      summary: Get General Conference Talks
+      description: |
+        Get all available talks from General Conference matching the search criteria. Use the /topics endpoint to find the "tags" for the topics you can search by
+      operationId: getTalks
+      produces:
+      - application/json
+      parameters:
+      - name: source
+        in: query
+        description: |
+          Valid values are 'web' and 'cache'. 'web' integrates with the Church's API's directly so it is always the most up-to-date, but may take longer. 'cache' is faster, but may be a few days old
+        required: true
+        type: string
+        enum:
+        - web
+        - cache
+      - name: topic
+        in: query
+        description: |
+          Tag of the topic of interest. Will return only those tags relative to this topic
+        required: false
+        type: string
+        enum:
+        - aaronic-priesthood
+        - abortion
+        - abuse
+        - accountability
+        - activation
+        - adam-and-eve
+        - addiction
+        - adversity
+        - agency
+        - angels
+        - anger
+        - animals
+        - apostasy
+        - articles-of-faith
+        - athletics
+        - atonement
+        - attitude
+        - authority
+        - baptism
+        - belonging
+        - bible
+        - bishops
+        - blessings
+        - book-of-mormon
+        - brigham-young
+        - brotherhood
+        - character
+        - charity
+        - children
+        - christianity
+        - christmas
+        - church-attendance
+        - church-callings
+        - church-doctrine
+        - church-growth
+        - church-history
+        - church-leaders
+        - church-leadership
+        - church-meetings
+        - church-membership
+        - church-organization
+        - commandments
+        - commitment
+        - communication
+        - compassion
+        - confidence
+        - confirmation
+        - conscience
+        - consecration
+        - contention
+        - conversion
+        - convert-retention
+        - councils
+        - couple-missionaries
+        - courage
+        - covenants
+        - covetousness
+        - creation
+        - creativity
+        - criticism
+        - curriculum
+        - dating
+        - death
+        - dedication
+        - depression
+        - disabilities
+        - discipleship
+        - disciplinary-councils
+        - discipline
+        - dispensations
+        - divine-nature
+        - divorce
+        - doctrine-and-covenants
+        - duty
+        - easter
+        - education
+        - elderly
+        - employment
+        - endurance
+        - environment
+        - eternal-life
+        - evil
+        - example
+        - excellence
+        - exodus
+        - ezra-taft-benson
+        - faith
+        - fall
+        - false-doctrines
+        - family
+        - family-history
+        - family-home-evening
+        - fasting
+        - fatherhood
+        - fear
+        - fellowshipping
+        - financial-management
+        - first-presidency
+        - first-vision
+        - foreordination
+        - forgiveness
+        - freedom
+        - friendship
+        - gambling
+        - gathering
+        - general-conference
+        - generosity
+        - goals
+        - god-the-father
+        - godhead
+        - good-samaritan
+        - gordon-b.-hinckley
+        - government
+        - grace
+        - greed
+        - habits
+        - happiness
+        - harold-b.-lee
+        - healing
+        - health
+        - heavenly-father
+        - heroes
+        - holidays
+        - holiness
+        - holy-ghost
+        - holy-land
+        - home
+        - home-teaching
+        - homosexuality
+        - honesty
+        - hope
+        - house-of-israel
+        - howard-w.-hunter
+        - humanitarian-aid
+        - humility
+        - humor
+        - idol-worship
+        - individual-worth
+        - inspiration
+        - institute
+        - integrity
+        - jesus-christ
+        - joseph-smith
+        - joy
+        - justice
+        - kindness
+        - kingdom-of-god
+        - knowledge
+        - languages
+        - last-days
+        - laws
+        - leadership
+        - learning
+        - light-of-christ
+        - listening
+        - literacy
+        - literature
+        - loneliness
+        - love
+        - loyalty
+        - marriage
+        - media
+        - meekness
+        - melchizedek-priesthood
+        - mental-health
+        - mental-illness
+        - mercy
+        - military
+        - ministering
+        - miracles
+        - mission-of-the-church
+        - missionary-work
+        - modesty
+        - morality
+        - mortality
+        - motherhood
+        - music
+        - name-of-church
+        - native-americans
+        - neighbors
+        - new-testament
+        - nonmembers
+        - obedience
+        - offense
+        - opposition
+        - ordinances
+        - parenthood
+        - parents
+        - passover
+        - patience
+        - patriarchal-blessings
+        - patriotism
+        - peace
+        - peer-pressure
+        - perspective
+        - pioneers
+        - plan-of-salvation
+        - pornography
+        - poverty
+        - prayer
+        - premortal-existence
+        - preparation
+        - pride
+        - priesthood
+        - priesthood-blessings
+        - priesthood-quorums
+        - primary
+        - priorities
+        - profanity
+        - promptings
+        - prophecy
+        - prophets
+        - quorum-of-the-twelve-apostles
+        - quorums-of-seventy
+        - relief-society
+        - religion
+        - religious-freedom
+        - repentance
+        - respect
+        - responsibility
+        - restoration
+        - resurrection
+        - revelation
+        - reverence
+        - righteousness
+        - sabbath
+        - sacrament
+        - sacredness
+        - sacrifice
+        - safety
+        - satan
+        - scouting
+        - scripture-study
+        - scriptures
+        - sealings
+        - second-coming
+        - self-control
+        - self-esteem
+        - self-reliance
+        - seminary
+        - service
+        - sin
+        - single-members
+        - sisterhood
+        - social-services
+        - spencer-w.-kimball
+        - spirit-world
+        - spiritual-gifts
+        - spirituality
+        - standards
+        - stress
+        - success
+        - sunday-school
+        - tabernacle-choir
+        - talents
+        - teaching
+        - technology
+        - temple
+        - temple-square
+        - temple-work
+        - temples
+        - temptation
+        - testimony
+        - thomas-s.-monson
+        - time-management
+        - tithing
+        - tolerance
+        - traditions
+        - trust
+        - truth
+        - u.s.-constitution
+        - understanding
+        - unity
+        - values
+        - violence
+        - virtue
+        - visiting-teaching
+        - wealth
+        - welfare
+        - wilford-woodruff
+        - wisdom
+        - womanhood
+        - women
+        - word-of-wisdom
+        - work
+        - worldliness
+        - worship
+        - worthiness
+        - young-adults
+        - young-single-adults
+        - young-women
+        - youth
+        - zion
+      responses:
+        "200":
+          description: talks matching the search criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Talk'
+        "400":
+          description: bad input parameter
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Error'
+definitions:
+  Topic:
+    type: object
+    properties:
+      title:
+        type: string
+        example: Jesus Christ
+      tag:
+        type: string
+        example: jesus-christ
+      talksUrl:
+        type: string
+        format: uri
+        example: https://www.churchofjesuschrist.org/general-conference/topics/Jesus-Christ?lang=eng&encoded=true
+      talksCount:
+        type: number
+        format: int32
+        example: 809.0
+  Talk:
+    type: object
+    properties:
+      title:
+        type: string
+        example: Hear Him
+      description:
+        type: string
+        example: |
+          President Nelson teaches how we can hear the Lord, and he issues a new proclamation: 'The Restoration of the Fulness of the Gospel of Jesus Christ: A Bicentennial Proclamation to the World.'
+      quote:
+        type: string
+        example: |
+          Our Father knows that when we are surrounded by uncertainty and fear, what will help us the very most is to hear His Son.
+      sessionOrder:
+        type: number
+        example: 4.0
+      session:
+        $ref: '#/definitions/Session'
+      speaker:
+        $ref: '#/definitions/Speaker'
+      thumbnailUrl:
+        type: string
+        format: uri
+        example: https://mediasrv.churchofjesuschrist.org/media-services/GA/thumbnail/6147483780001
+      detailUrl:
+        type: string
+        format: uri
+        example: https://www.churchofjesuschrist.org/general-conference/2020/04/45nelson?lang=eng
+  Session:
+    type: object
+    properties:
+      name:
+        type: string
+        example: Sunday Morning Session
+      conferenceOrder:
+        type: number
+        example: 4.0
+      conference:
+        $ref: '#/definitions/Conference'
+  Conference:
+    type: object
+    properties:
+      year:
+        type: number
+        example: 2020.0
+      month:
+        type: number
+        example: 4.0
+  Speaker:
+    type: object
+    properties:
+      title:
+        type: string
+        example: President
+      preferredName:
+        type: string
+        example: Russell M Nelson
+      firstName:
+        type: string
+        example: Russell
+      middleName:
+        type: string
+        example: M
+      lastName:
+        type: string
+        example: Nelson
+      role:
+        type: string
+        example: President of The Church of Jesus Christ of Latter-day Saints
+  Error:
+    type: object
+    properties:
+      msg:
+        type: string
+        example: Valid values include web or cache
+      param:
+        type: string
+        example: source
+      location:
+        type: string
+        example: query
