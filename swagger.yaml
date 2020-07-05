@@ -391,7 +391,7 @@ definitions:
         format: uri
         example: https://www.churchofjesuschrist.org/general-conference/topics/Jesus-Christ?lang=eng&encoded=true
       talksCount:
-        type: number
+        type: integer
         example: 809
   Talk:
     type: object
@@ -408,8 +408,8 @@ definitions:
         example: |
           Our Father knows that when we are surrounded by uncertainty and fear, what will help us the very most is to hear His Son.
       sessionOrder:
-        type: number
-        example: 4.0
+        type: integer
+        example: 4
       session:
         $ref: '#/definitions/Session'
       speaker:
@@ -429,19 +429,19 @@ definitions:
         type: string
         example: Sunday Morning Session
       conferenceOrder:
-        type: number
-        example: 4.0
+        type: integer
+        example: 4
       conference:
         $ref: '#/definitions/Conference'
   Conference:
     type: object
     properties:
       year:
-        type: number
-        example: 2020.0
+        type: integer
+        example: 2020
       month:
-        type: number
-        example: 4.0
+        type: integer
+        example: 4
   Speaker:
     type: object
     properties:
