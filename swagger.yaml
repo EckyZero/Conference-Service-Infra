@@ -9,7 +9,7 @@ info:
   license:
     name: MIT
     url: https://github.com/EckyZero/Talk-Service/blob/master/LICENSE
-host: https://api.conference.wardbook.com
+host: api.conference.wardbook.com
 basePath: /1.0
 schemes:
 - https
