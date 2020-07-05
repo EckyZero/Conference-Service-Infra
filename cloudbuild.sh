@@ -17,7 +17,8 @@ declare -a services=("sqladmin.googleapis.com"
                      "appengine.googleapis.com",
                      "endpointsportal.googleapis.com",
                      "dns.googleapis.com",
-                     "compute.googleapis.com"
+                     "compute.googleapis.com",
+                     "iap.googleapis.com"
                 )
 
 # Enable specified services
