@@ -8,11 +8,16 @@ CONFIG_FILE=$2
 # Deployment Manager - enable this deployment script to work
 # Secret Manager - enable app to access configurations
 # App Engine - enable application deployment to App Engine
+# Endpoints Portal - for Cloud Endpoints
+# DNS - for project ownership of the domain
+# Compute Engine - enabled as part of the DNS configuration above
 declare -a services=("sqladmin.googleapis.com" 
                      "deploymentmanager.googleapis.com" 
                      "secretmanager.googleapis.com" 
                      "appengine.googleapis.com",
-                     "endpointsportal.googleapis.com"
+                     "endpointsportal.googleapis.com",
+                     "dns.googleapis.com",
+                     "compute.googleapis.com"
                 )
 
 # Enable specified services
