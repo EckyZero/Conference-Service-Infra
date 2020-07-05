@@ -472,6 +472,3 @@ definitions:
       param:
         type: string
         example: source
-      location:
-        type: string
-        example: query
