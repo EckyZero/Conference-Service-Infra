@@ -46,3 +46,5 @@ fi
 
 # Update cloud endpoints API portal
 gcloud endpoints services deploy 'swagger.yaml'
+
+gcloud alpha iap oauth-brands create --applicationTitle="Conference Service" --supportEmail="help.wardbook@gmail.com"
