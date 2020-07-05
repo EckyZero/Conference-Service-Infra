@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   description: RESTful web service for querying general conference data for members of The Church of Jesus Christ of Latter-day Saints
-  version: 1.0
+  version: 1.0.0
   title: Conference Service
   contact:
     email: ebandersen87@gmial.com
@@ -10,7 +10,7 @@ info:
     name: MIT
     url: https://github.com/EckyZero/Talk-Service/blob/master/LICENSE
 host: api.conference.wardbook.com
-basePath: /1.0
+basePath: /1.0.0
 schemes:
 - https
 paths:
@@ -472,3 +472,6 @@ definitions:
       param:
         type: string
         example: source
+      location:
+        type: string
+        example: query
