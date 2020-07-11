@@ -36,15 +36,19 @@ paths:
         "200":
           description: topics matching the search criteria
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/Topic'
+            $ref: '#/definitions/TopicResponse'
         "400":
           description: bad input parameter
           schema:
             type: array
             items:
               $ref: '#/definitions/Error'
+        "500":
+          description: unexpected server error
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ErrorResponse'
   /talks:
     get:
       summary: Get General Conference Talks
@@ -367,16 +371,68 @@ paths:
         "200":
           description: talks matching the search criteria
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/Talk'
+            $ref: '#/definitions/TalkResponse'
         "400":
           description: bad input parameter
           schema:
             type: array
             items:
               $ref: '#/definitions/Error'
+        "500":
+          description: unexpected server error
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ErrorResponse'
 definitions:
+  ErrorResponse:
+    type: object
+    properties:
+      isError:
+        type: boolean
+        example: true
+      errorMessage:
+        type: string
+        example: 'Unable to parse talks from https://{example}.com'
+      count:
+        type: integer
+        example: 0
+      results:
+        type: array
+        items:
+          default: []
+  TalkResponse:
+    type: object
+    properties:
+      isError:
+        type: boolean
+        example: false
+      errorMessage: 
+        type: string
+        example: ''
+      count:
+        type: integer
+        example: 249
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/Talk'
+  TopicResponse:
+    type: object
+    properties:
+      isError:
+        type: boolean
+        example: false
+      errorMessage: 
+        type: string
+        example: ''
+      count:
+        type: integer
+        example: 249
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/Topic'
   Topic:
     type: object
     properties:
